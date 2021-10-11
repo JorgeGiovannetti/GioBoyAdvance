@@ -1,0 +1,11 @@
+# Solution files
+*.vcxproj
+*.sln
+*.user
+
+# Build
+/bin/
+/bin-obj/
+
+# Misc
+.vs/
