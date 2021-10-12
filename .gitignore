@@ -9,3 +9,4 @@
 
 # Misc
 .vs/
+__pycache__/
