@@ -17,4 +17,4 @@ You can also run it directly by calling `premake5.lua` through the bundled prema
 ### Building
 The project can be built automatically`*` by running `python tools.py build` or manually through your IDE with the previously generated project/solution file.
 
-> Building on Windows requires adding MSBuild to PATH
+> Building on Windows from the tools script requires adding MSBuild to PATH
