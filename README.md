@@ -5,11 +5,10 @@
 GBA cross-platform emulator written in C++
 
 ## Features
----
 TBD
 
 ## Compiling
----
+
 ### Generating Project with Premake
 Compiling requires using premake5, which comes bundled within the vendors of the project. Running `python tools.py gen` generates the project/solution for your OS.
 
