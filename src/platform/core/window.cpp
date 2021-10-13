@@ -2,6 +2,7 @@
 
 #include <SDL2/SDL.h>
 #include <core/window.h>
+#include <core/emulator.h>
 
 namespace platform::core
 {
@@ -30,5 +31,21 @@ namespace platform::core
     {
         SDL_DestroyWindow(mWindow);
         mWindow = nullptr;
+    }
+
+    void Window::PumpEvents()
+    {
+        SDL_Event e;
+        while (SDL_PollEvent(&e))
+        {
+            switch (e.type)
+            {
+            case SDL_QUIT:
+                Emulator::Instance().Quit();
+                break;
+            default:
+                break;
+            }
+        }
     }
 }

@@ -8,18 +8,20 @@ namespace platform::core
     {
     public:
         static Emulator &Instance();
-        Emulator();
         ~Emulator() {}
-
-        bool Initialize();
-        void Shutdown();
+        void Run();
+        inline void Quit() { mIsRunning = false; }
 
     private:
+        bool Initialize();
+        void Shutdown();
         void GetInfo();
 
         Window mWindow;
+        bool mIsRunning;
 
         // Singleton
+        Emulator();
         static Emulator *mInstance;
     };
 }

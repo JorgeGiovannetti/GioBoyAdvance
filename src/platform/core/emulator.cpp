@@ -5,18 +5,35 @@
 #include <core/window.h>
 #include <core/emulator.h>
 
-
 namespace platform::core
 {
+    Emulator::Emulator() : mIsRunning(false)
+    {
+        GetInfo();
+    }
+
     Emulator &Emulator::Instance()
     {
         static Emulator mInstance;
         return mInstance;
     }
 
+    void Emulator::Run()
+    {
+        if (Initialize())
+        {
+            while (mIsRunning)
+            {
+                mWindow.PumpEvents();
+            }
+
+            Shutdown();
+        }
+    }
+
     bool Emulator::Initialize()
     {
-        bool ret = true;
+        bool ret = false;
 
         std::cout << "Hello world, GioBoyAdvance!" << std::endl;
 
@@ -30,10 +47,17 @@ namespace platform::core
             SDL_VERSION(&version);
             std::cout << "SDL " << (int32_t)version.major << "." << (int32_t)version.minor << "." << (int32_t)version.patch << std::endl;
 
-            if (!mWindow.Create())
+            if (mWindow.Create())
             {
-                ret = false;
+                ret = true;
+                mIsRunning = true;
             }
+        }
+
+        if (!ret)
+        {
+            std::cout << "Initialization failed. Shutting down..." << std::endl;
+            Shutdown();
         }
 
         return ret;
