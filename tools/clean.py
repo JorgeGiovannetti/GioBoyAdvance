@@ -13,7 +13,7 @@ def removeFolder(dirname):
     except OSError as e:
         print ("Error: %s - %s." % (e.filename, e.strerror))
 
-files = ['GioBoyAdvance.sln', 'GioBoyAdvance.vcxproj']
+files = ['GioBoyAdvance.sln', 'GioBoyAdvance.vcxproj', 'GioBoyAdvance.vcxproj.filters', 'GioBoyAdvance.vcxproj.user']
 dirs = ['bin', 'bin-obj']
 
 for f in files:

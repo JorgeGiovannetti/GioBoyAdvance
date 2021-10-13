@@ -27,12 +27,15 @@ project "GioBoyAdvance"
 
     files
     {
+        "include/**.h",
         "src/**.h",
         "src/**.cpp"
     }
 
     includedirs
     {
+        "include/platform",
+        "include/gba",
         "%{externals.sdl2}/include"
     }
 
@@ -68,7 +71,7 @@ project "GioBoyAdvance"
 
         defines
         {
-            "GIO_PLATFORM_MACOSX"
+            "GIO_PLATFORM_MAC"
         }
         
         links
@@ -89,10 +92,15 @@ project "GioBoyAdvance"
 
     filter "configurations:Debug"
         symbols "On"
+        defines
+        {
+            "GIO_CONFIG_DEBUG"
+        }
 
     filter "configurations:Release"
         optimize "On"
-    
-    filter "configurations:Dist"
-        symbols "On"
+        defines
+        {
+            "GIO_CONFIG_RELEASE"
+        }
     
