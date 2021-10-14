@@ -1,20 +1,35 @@
 import os
 import shutil
 
-def removeFile(filename):    
+
+def removeFile(filename):
     try:
         os.remove(filename)
     except OSError as e:
-        print ("Error: %s - %s." % (e.filename, e.strerror))
+        print("Error: %s - %s." % (e.filename, e.strerror))
+
 
 def removeFolder(dirname):
     try:
         shutil.rmtree(dirname)
     except OSError as e:
-        print ("Error: %s - %s." % (e.filename, e.strerror))
+        print("Error: %s - %s." % (e.filename, e.strerror))
 
-files = ['GioBoyAdvance.sln', 'GioBoyAdvance.vcxproj', 'GioBoyAdvance.vcxproj.filters', 'GioBoyAdvance.vcxproj.user']
-dirs = ['bin', 'bin-obj']
+
+files = [
+    'GioBoyAdvance.sln',
+    'GioBoyAdvance.vcxproj',
+    'GioBoyAdvance.vcxproj.filters',
+    'vendor/glad/glad.vcxproj',
+    'vendor/glad/glad.vcxproj.filters'
+]
+
+dirs = [
+    'bin',
+    'bin-obj',
+    'vendor/glad/bin',
+    'vendor/glad/bin-obj'
+]
 
 for f in files:
     removeFile(f)

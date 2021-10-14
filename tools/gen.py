@@ -1,4 +1,5 @@
-import subprocess, sys
+import subprocess
+import sys
 import globals
 
 # Generate projects/solutions

@@ -1,4 +1,6 @@
-import platform, subprocess, sys
+import platform
+import subprocess
+import sys
 
 PLATFORM = sys.platform
 for x in platform.uname():
@@ -6,11 +8,14 @@ for x in platform.uname():
         PLATFORM = "windows"
         break
 
+
 def IsWindows():
     return PLATFORM == "windows" or PLATFORM == "win32"
 
+
 def IsLinux():
     return PLATFORM == "linux"
+
 
 def IsMac():
     return PLATFORM == "darwin"

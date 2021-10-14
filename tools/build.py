@@ -1,4 +1,6 @@
-import os, subprocess, sys
+import os
+import subprocess
+import sys
 import globals
 
 # Build projects/solutions
@@ -14,5 +16,5 @@ if globals.IsLinux():
 
 if globals.IsMac():
     ret = subprocess.call(['make'] + sys.argv[1:])
-    
+
 sys.exit(ret)

@@ -1,12 +1,16 @@
-import os, subprocess, sys
+import os
+import subprocess
+import sys
 import globals
 
 # Run project
+
 
 def findExecutable(name, path):
     for root, dirs, files in os.walk(path):
         if name in files:
             return os.path.join(root, name)
+
 
 if globals.IsWindows():
     ret = 0
