@@ -16,6 +16,10 @@ odir = "bin-obj\\" .. outputdir .. "\\%{prj.name}"
 externals = {}
 externals["sdl2"] = "vendor\\sdl2"
 externals["spdlog"] = "vendor\\spdlog"
+externals["glad"] = "vendor\\glad"
+
+-- Process Glad
+include "vendor\\glad"
 
 project "GioBoyAdvance"
     kind "ConsoleApp"
@@ -38,7 +42,13 @@ project "GioBoyAdvance"
         "include/platform",
         "include/gba",
         "%{externals.sdl2}/include",
-        "%{externals.spdlog}/include"
+        "%{externals.spdlog}/include",
+        "%{externals.glad}/include"
+    }
+
+    defines
+    {
+        "GLFW_INCLUDE_NONE" -- Ensures glad doesn't include GLFW
     }
 
     filter "system:windows"
@@ -51,12 +61,13 @@ project "GioBoyAdvance"
 
         libdirs
         {
-            "%{externals.sdl2}/lib"
+            "%{externals.sdl2}/lib",
         }
 
         links
         {
-            "SDL2"
+            "SDL2",
+            "glad"
         }
 
         postbuildcommands

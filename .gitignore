@@ -5,8 +5,9 @@
 *.filters
 
 # Build
-/bin/
-/bin-obj/
+bin/
+bin-obj/
+!vendor/bin/
 
 # Misc
 .vs/

@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include <SDL2/SDL.h>
 
 #include <core/emulator.h>
@@ -27,6 +25,8 @@ namespace platform::core
             while (mIsRunning)
             {
                 mWindow.PumpEvents();
+                mWindow.BeginRender();
+                mWindow.EndRender();
             }
 
             Shutdown();
