@@ -2,13 +2,15 @@
 
 #include <SDL2/SDL.h>
 
-#include <core/window.h>
 #include <core/emulator.h>
+#include <core/log.h>
+#include <core/window.h>
 
 namespace platform::core
 {
     Emulator::Emulator() : mIsRunning(false)
     {
+        platform::core::Log::Init();
         GetInfo();
     }
 
@@ -35,17 +37,18 @@ namespace platform::core
     {
         bool ret = false;
 
-        std::cout << "Hello world, GioBoyAdvance!" << std::endl;
 
         if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
         {
-            std::cout << "Error initializing SDL2: " << SDL_GetError() << std::endl;
+            platform::core::Log::GetClientLogger()->critical("Error initializing SDL2: {}", SDL_GetError());
         }
         else
         {
             SDL_version version;
             SDL_VERSION(&version);
-            std::cout << "SDL " << (int32_t)version.major << "." << (int32_t)version.minor << "." << (int32_t)version.patch << std::endl;
+            CLIENT_LOG_WARN("SDL {}.{}.{}", (int32_t)version.major, (int32_t)version.minor, (int32_t)version.patch);
+
+            CLIENT_LOG_TRACE("Initializing...");
 
             if (mWindow.Create())
             {
@@ -54,9 +57,13 @@ namespace platform::core
             }
         }
 
-        if (!ret)
+        if (ret)
         {
-            std::cout << "Initialization failed. Shutting down..." << std::endl;
+            CLIENT_LOG_INFO("Hello world, GioBoyAdvance!");
+        }
+        else
+        {
+            CLIENT_LOG_ERROR("Initialization failed");
             Shutdown();
         }
 
@@ -65,6 +72,7 @@ namespace platform::core
 
     void Emulator::Shutdown()
     {
+        CLIENT_LOG_WARN("Shutting down...");
         mWindow.Shutdown();
         SDL_Quit();
     }
@@ -72,19 +80,19 @@ namespace platform::core
     void Emulator::GetInfo()
     {
 #ifdef GIO_CONFIG_DEBUG
-        std::cout << "Configuration: DEBUG" << std::endl;
+        CLIENT_LOG_WARN("Configuration: DEBUG");
 #endif
 #ifdef GIO_CONFIG_RELEASE
-        std::cout << "Configuration: RELEASE" << std::endl;
+        CLIENT_LOG_WARN("Configuration: RELEASE");
 #endif
 #ifdef GIO_PLATFORM_WINDOWS
-        std::cout << "Platform: Windows" << std::endl;
+        CLIENT_LOG_WARN("Platform: Windows");
 #endif
 #ifdef GIO_PLATFORM_MAC
-        std::cout << "Platform: Mac" << std::endl;
+        CLIENT_LOG_WARN("Platform: Mac");
 #endif
 #ifdef GIO_PLATFORM_LINUX
-        std::cout << "Platform: Linux" << std::endl;
+        CLIENT_LOG_WARN("Platform: Linux");
 #endif
     }
 }

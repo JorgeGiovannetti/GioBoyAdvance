@@ -15,6 +15,7 @@ odir = "bin-obj\\" .. outputdir .. "\\%{prj.name}"
 -- External Dependencies
 externals = {}
 externals["sdl2"] = "vendor\\sdl2"
+externals["spdlog"] = "vendor\\spdlog"
 
 project "GioBoyAdvance"
     kind "ConsoleApp"
@@ -36,7 +37,8 @@ project "GioBoyAdvance"
     {
         "include/platform",
         "include/gba",
-        "%{externals.sdl2}/include"
+        "%{externals.sdl2}/include",
+        "%{externals.spdlog}/include"
     }
 
     filter "system:windows"
