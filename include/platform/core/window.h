@@ -1,5 +1,7 @@
 #pragma once
 
+#include <core/menubar.h>
+
 struct SDL_Window;
 using SDL_GLContext = void*;
 namespace platform::core
@@ -15,11 +17,17 @@ namespace platform::core
             
             void PumpEvents();
 
+            void GetSize(int& w, int& h);
+
+            SDL_Window* GetSDLWindow() { return mWindow; }
+            SDL_GLContext GetGLContext() { return mGLContext; }
+
             void BeginRender();
             void EndRender();
 
         private:
             SDL_Window* mWindow;
             SDL_GLContext mGLContext;
+            MenuBar mMenuBar;
     };
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "window.h"
+#include "graphics/renderer.h"
 
 namespace platform::core
 {
@@ -11,6 +12,8 @@ namespace platform::core
         ~Emulator() {}
         void Run();
         inline void Quit() { mIsRunning = false; }
+        inline Window& GetWindow() { return mWindow; }
+        inline platform::graphics::Renderer& GetRenderer() { return mRenderer; }
 
     private:
         bool Initialize();
@@ -19,6 +22,8 @@ namespace platform::core
 
         Window mWindow;
         bool mIsRunning;
+
+        platform::graphics::Renderer mRenderer;
 
         // Singleton
         Emulator();

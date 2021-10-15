@@ -21,7 +21,6 @@ externals["imgui"] = "vendor\\imgui"
 
 -- Process Glad and ImGui
 include "vendor\\glad"
-include "vendor\\imgui"
 
 project "GioBoyAdvance"
     kind "ConsoleApp"
@@ -35,6 +34,7 @@ project "GioBoyAdvance"
     files
     {
         "include/**.h",
+        "include/**.cpp",
         "src/**.h",
         "src/**.cpp"
     }
@@ -43,6 +43,7 @@ project "GioBoyAdvance"
     {
         "include/platform",
         "include/gba",
+        "include/vendor",
         "%{externals.sdl2}/include",
         "%{externals.spdlog}/include",
         "%{externals.glad}/include",

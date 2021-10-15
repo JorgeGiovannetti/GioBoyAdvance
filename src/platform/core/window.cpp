@@ -1,7 +1,9 @@
 #include <core/emulator.h>
 #include <core/log.h>
 #include <core/window.h>
+#include <graphics/helper.h>
 
+#include <imgui/imgui.h>
 #include <SDL2/SDL.h>
 #include <glad/glad.h>
 
@@ -44,14 +46,11 @@ namespace platform::core
 
         gladLoadGLLoader(SDL_GL_GetProcAddress);
 
-        // TODO: Move this to a renderer initialization
-        glEnable(GL_DEPTH_TEST);
-        glDepthFunc(GL_LEQUAL);
+        platform::graphics::CheckGLError();
 
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        mMenuBar.Create();
 
-        glClearColor(0, 0, 0, 1);
+        platform::graphics::CheckGLError();
 
         return true;
     }
@@ -59,6 +58,7 @@ namespace platform::core
     void Window::Shutdown()
     {
         SDL_DestroyWindow(mWindow);
+        SDL_GL_DeleteContext(mGLContext);
         mWindow = nullptr;
     }
 
@@ -80,11 +80,21 @@ namespace platform::core
 
     void Window::BeginRender()
     {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        auto& renderer = Emulator::Instance().GetRenderer();
+        renderer.Clear();
     }
 
     void Window::EndRender()
     {
+
+        mMenuBar.BeginRender();
+        ImGui::ShowDemoWindow();
+        mMenuBar.EndRender();
         SDL_GL_SwapWindow(mWindow);
+    }
+
+    void Window::GetSize(int &w, int &h)
+    {
+        SDL_GetWindowSize(mWindow, &w, &h);
     }
 }

@@ -37,7 +37,6 @@ namespace platform::core
     {
         bool ret = false;
 
-
         if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
         {
             platform::core::Log::GetClientLogger()->critical("Error initializing SDL2: {}", SDL_GetError());
@@ -47,11 +46,14 @@ namespace platform::core
             SDL_version version;
             SDL_VERSION(&version);
             CLIENT_LOG_WARN("SDL {}.{}.{}", (int32_t)version.major, (int32_t)version.minor, (int32_t)version.patch);
+            CLIENT_LOG_WARN("SDL_GLContext version {}.{}", SDL_GL_CONTEXT_MAJOR_VERSION, SDL_GL_CONTEXT_MINOR_VERSION);
 
             CLIENT_LOG_TRACE("Initializing...");
 
             if (mWindow.Create())
             {
+                mRenderer.Initialize();
+
                 ret = true;
                 mIsRunning = true;
             }
@@ -73,6 +75,10 @@ namespace platform::core
     void Emulator::Shutdown()
     {
         CLIENT_LOG_WARN("Shutting down...");
+        mIsRunning = false;
+
+        mRenderer.Shutdown();
+
         mWindow.Shutdown();
         SDL_Quit();
     }

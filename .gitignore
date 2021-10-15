@@ -13,3 +13,4 @@ bin-obj/
 .vs/
 .vscode/
 __pycache__/
+imgui.ini

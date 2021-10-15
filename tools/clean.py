@@ -23,7 +23,8 @@ files = [
     'GioBoyAdvance.vcxproj',
     'GioBoyAdvance.vcxproj.filters',
     'vendor/glad/glad.vcxproj',
-    'vendor/glad/glad.vcxproj.filters'
+    'vendor/glad/glad.vcxproj.filters',
+    'imgui.ini'
 ]
 
 dirs = [
