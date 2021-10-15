@@ -30,7 +30,9 @@ dirs = [
     'bin',
     'bin-obj',
     'vendor/glad/bin',
-    'vendor/glad/bin-obj'
+    'vendor/glad/bin-obj',
+    'vendor/imgui/bin',
+    'vendor/imgui/bin-obj'
 ]
 
 filesDeleted = 0

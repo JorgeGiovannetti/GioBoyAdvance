@@ -17,9 +17,11 @@ externals = {}
 externals["sdl2"] = "vendor\\sdl2"
 externals["spdlog"] = "vendor\\spdlog"
 externals["glad"] = "vendor\\glad"
+externals["imgui"] = "vendor\\imgui"
 
--- Process Glad
+-- Process Glad and ImGui
 include "vendor\\glad"
+include "vendor\\imgui"
 
 project "GioBoyAdvance"
     kind "ConsoleApp"
@@ -43,7 +45,8 @@ project "GioBoyAdvance"
         "include/gba",
         "%{externals.sdl2}/include",
         "%{externals.spdlog}/include",
-        "%{externals.glad}/include"
+        "%{externals.glad}/include",
+        "%{externals.imgui}/include"
     }
 
     defines

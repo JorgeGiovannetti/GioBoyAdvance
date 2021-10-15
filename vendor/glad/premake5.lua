@@ -2,8 +2,8 @@ project "glad"
     kind "StaticLib"
     language "C"
     staticruntime "On" 
-    targetdir (tdir)
-    objdir (odir)
+	targetdir ("bin/" .. "/%{prj.name}")
+	objdir ("bin-obj/" .. "/%{prj.name}")
 
     files
     {
