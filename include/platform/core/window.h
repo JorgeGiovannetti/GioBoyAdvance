@@ -2,6 +2,8 @@
 
 #include <core/menubar.h>
 
+#include <string>
+
 struct SDL_Window;
 using SDL_GLContext = void*;
 namespace platform::core
@@ -17,6 +19,7 @@ namespace platform::core
             
             void PumpEvents();
 
+            void SetTitle(const std::string& title);
             void GetSize(int& w, int& h);
 
             SDL_Window* GetSDLWindow() { return mWindow; }

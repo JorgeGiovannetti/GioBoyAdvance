@@ -66,7 +66,7 @@ namespace platform::core
     {
         if (ImGui::MenuItem("Open", "Ctrl+O"))
         {
-            Emulator::Instance().LoadROM();
+            Emulator::Instance().LoadROMFile();
         }
         if (ImGui::BeginMenu("Open Recent"))
         {
@@ -76,7 +76,7 @@ namespace platform::core
             {
                 if (ImGui::MenuItem(rom.c_str()))
                 {
-                    Emulator::Instance().LoadROM(rom);
+                    Emulator::Instance().LoadROMFile(rom);
                 }
             }
             ImGui::EndMenu();

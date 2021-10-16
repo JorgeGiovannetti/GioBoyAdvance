@@ -87,6 +87,11 @@ namespace platform::core
         SDL_GL_SwapWindow(mWindow);
     }
 
+    void Window::SetTitle(const std::string& title)
+    {
+        SDL_SetWindowTitle(mWindow, title.c_str());
+    }
+
     void Window::GetSize(int &w, int &h)
     {
         SDL_GetWindowSize(mWindow, &w, &h);

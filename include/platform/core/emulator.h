@@ -18,14 +18,15 @@ namespace platform::core
 
         inline void Quit() { mIsRunning = false; }
         void CloseROM();
-        void LoadROM();
-        void LoadROM(std::string file);
+        void LoadROMFile();
+        void LoadROMFile(const std::string& filepath);
         std::vector<std::string>& GetRecentROMs() { return recentROMs; }
 
     private:
         bool Initialize();
         void Shutdown();
         void GetInfo();
+        void LoadROM(const std::string& filepath);
 
         Window mWindow;
         bool mIsRunning;
