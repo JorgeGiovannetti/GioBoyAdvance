@@ -18,9 +18,11 @@ externals["sdl2"] = "vendor\\sdl2"
 externals["spdlog"] = "vendor\\spdlog"
 externals["glad"] = "vendor\\glad"
 externals["imgui"] = "vendor\\imgui"
+externals["nfd"] = "vendor\\nfd-extended"
 
--- Process Glad and ImGui
+-- Process Glad and NativeFileDialog-Extended
 include "vendor\\glad"
+include "vendor\\nfd-extended"
 
 project "GioBoyAdvance"
     kind "ConsoleApp"
@@ -47,7 +49,8 @@ project "GioBoyAdvance"
         "%{externals.sdl2}/include",
         "%{externals.spdlog}/include",
         "%{externals.glad}/include",
-        "%{externals.imgui}/include"
+        "%{externals.imgui}/include",
+        "%{externals.nfd}/include"
     }
 
     defines
@@ -71,7 +74,8 @@ project "GioBoyAdvance"
         links
         {
             "SDL2",
-            "glad"
+            "glad",
+            "nfd",
         }
 
         postbuildcommands
