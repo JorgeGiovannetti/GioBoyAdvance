@@ -43,4 +43,60 @@ namespace platform::core
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     }
+
+    void MenuBar::Show()
+    {
+        if (ImGui::BeginMainMenuBar())
+        {
+            if (ImGui::BeginMenu("File"))
+            {
+                ShowMenuFile();
+                ImGui::EndMenu();
+            }
+            if (ImGui::BeginMenu("Options"))
+            {
+                ShowMenuOptions();
+                ImGui::EndMenu();
+            }
+            ImGui::EndMainMenuBar();
+        }
+    }
+
+    void MenuBar::ShowMenuFile()
+    {
+        if (ImGui::MenuItem("Open", "Ctrl+O"))
+        {
+            Emulator::Instance().LoadROM();
+        }
+        if (ImGui::BeginMenu("Open Recent"))
+        {
+            auto &recentRoms = Emulator::Instance().GetRecentROMs();
+
+            for (auto &rom : recentRoms)
+            {
+                if (ImGui::MenuItem(rom.c_str()))
+                {
+                    Emulator::Instance().LoadROM(rom);
+                }
+            }
+            ImGui::EndMenu();
+        }
+
+        ImGui::Separator();
+
+        if (ImGui::MenuItem("Close", "Ctrl+W"))
+        {
+            Emulator::Instance().CloseROM();
+        }
+
+        if (ImGui::MenuItem("Quit", "Alt+F4"))
+        {
+            Emulator::Instance().Quit();
+        }
+    }
+
+    void MenuBar::ShowMenuOptions()
+    {
+        ImGui::MenuItem("Configure...");
+    }
 }

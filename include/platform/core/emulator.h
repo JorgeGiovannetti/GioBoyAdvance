@@ -3,6 +3,8 @@
 #include "window.h"
 #include "graphics/renderer.h"
 
+#include <vector>
+
 namespace platform::core
 {
     class Emulator
@@ -11,9 +13,14 @@ namespace platform::core
         static Emulator &Instance();
         ~Emulator() {}
         void Run();
-        inline void Quit() { mIsRunning = false; }
         inline Window& GetWindow() { return mWindow; }
         inline platform::graphics::Renderer& GetRenderer() { return mRenderer; }
+
+        inline void Quit() { mIsRunning = false; }
+        void CloseROM();
+        void LoadROM();
+        void LoadROM(std::string file);
+        std::vector<std::string>& GetRecentROMs() { return recentROMs; }
 
     private:
         bool Initialize();
@@ -22,6 +29,7 @@ namespace platform::core
 
         Window mWindow;
         bool mIsRunning;
+        std::vector<std::string> recentROMs { "Game1.gba", "Game.gbc"};
 
         platform::graphics::Renderer mRenderer;
 

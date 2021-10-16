@@ -1,7 +1,6 @@
 #include <core/emulator.h>
 #include <core/log.h>
 #include <core/window.h>
-#include <graphics/helper.h>
 
 #include <imgui/imgui.h>
 #include <SDL2/SDL.h>
@@ -46,11 +45,7 @@ namespace platform::core
 
         gladLoadGLLoader(SDL_GL_GetProcAddress);
 
-        platform::graphics::CheckGLError();
-
         mMenuBar.Create();
-
-        platform::graphics::CheckGLError();
 
         return true;
     }
@@ -80,15 +75,14 @@ namespace platform::core
 
     void Window::BeginRender()
     {
-        auto& renderer = Emulator::Instance().GetRenderer();
+        auto &renderer = Emulator::Instance().GetRenderer();
         renderer.Clear();
+        mMenuBar.BeginRender();
     }
 
     void Window::EndRender()
     {
-
-        mMenuBar.BeginRender();
-        ImGui::ShowDemoWindow();
+        mMenuBar.Show();
         mMenuBar.EndRender();
         SDL_GL_SwapWindow(mWindow);
     }

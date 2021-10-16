@@ -83,6 +83,21 @@ namespace platform::core
         SDL_Quit();
     }
 
+    void Emulator::LoadROM()
+    {
+        CLIENT_LOG_WARN("Loading ROM...");
+    }
+
+    void Emulator::LoadROM(std::string file)
+    {
+        CLIENT_LOG_WARN("Loading ROM: {}", file);
+    }
+
+    void Emulator::CloseROM()
+    {
+        CLIENT_LOG_WARN("Closing ROM...");
+    }
+
     void Emulator::GetInfo()
     {
 #ifdef GIO_CONFIG_DEBUG

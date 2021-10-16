@@ -16,5 +16,10 @@ namespace platform::core
 
         void BeginRender();
         void EndRender();
+        void Show();
+
+    private:
+        void ShowMenuFile();
+        void ShowMenuOptions();
     };
 }
