@@ -24,6 +24,8 @@ files = [
     'GioBoyAdvance.vcxproj.filters',
     'vendor/glad/glad.vcxproj',
     'vendor/glad/glad.vcxproj.filters',
+    'vendor/nfd-extended/nfd.vcxproj',
+    'vendor/nfd-extended/nfd.vcxproj.filters',
     'imgui.ini'
 ]
 
@@ -33,7 +35,9 @@ dirs = [
     'vendor/glad/bin',
     'vendor/glad/bin-obj',
     'vendor/imgui/bin',
-    'vendor/imgui/bin-obj'
+    'vendor/imgui/bin-obj',
+    'vendor/nfd-extended/bin',
+    'vendor/nfd-extended/bin-obj'
 ]
 
 filesDeleted = 0
