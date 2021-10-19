@@ -68,11 +68,12 @@ namespace platform::core
         {
             Emulator::Instance().LoadROMFile();
         }
-        if (ImGui::BeginMenu("Open Recent"))
-        {
-            auto &recentRoms = Emulator::Instance().GetRecentROMs();
 
-            for (auto &rom : recentRoms)
+        auto &recentRoms = Emulator::Instance().GetRecentROMs();
+
+        if (ImGui::BeginMenu("Open Recent", !recentRoms.empty()))
+        {
+            for (auto &rom : recentRoms.getRecent())
             {
                 if (ImGui::MenuItem(rom.c_str()))
                 {

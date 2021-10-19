@@ -10,7 +10,7 @@
 
 namespace platform::core
 {
-    Emulator::Emulator() : mIsRunning(false)
+    Emulator::Emulator() : mIsRunning(false), mRecentROMs(10)
     {
         platform::core::Log::Init();
         GetInfo();
@@ -104,6 +104,8 @@ namespace platform::core
         std::string filename = ut::remove_extension(ut::base_name(filepath));
 
         platform::core::Emulator::Instance().mWindow.SetTitle(filename + " - GioBoyAdvance");
+
+        mRecentROMs.set(filepath);
     }
 
     void Emulator::CloseROM()

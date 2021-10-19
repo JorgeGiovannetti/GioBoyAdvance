@@ -19,7 +19,7 @@ namespace platform::core
 
     bool Window::Create()
     {
-        mWindow = SDL_CreateWindow("GioBoyAdvance", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 480, 320, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+        mWindow = SDL_CreateWindow("GioBoyAdvance", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 960, 640, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
         if (!mWindow)
         {
             CLIENT_LOG_ERROR("Error creating window: {}", SDL_GetError());
