@@ -24,7 +24,7 @@ namespace platform::utils
 
     void ROMHistory::use(std::string key)
     {
-        if (pos.find(key) != pos.end())
+        if (pos.count(key))
         {
             recent.erase(pos[key]);
         }
@@ -37,5 +37,4 @@ namespace platform::utils
         recent.push_front(key);
         pos[key] = recent.begin();
     }
-
 }
